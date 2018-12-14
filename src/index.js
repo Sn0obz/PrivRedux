@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/index";
-import { logmein } from "./redux/actions";
+import { Login, Logout } from "./redux/actions";
 import App from "./App";
 import { User } from "./class/user";
 import * as serviceWorker from "./serviceWorker";
 
 window.store = store;
-window.logmein = logmein;
+window.Login = Login;
+window.Logout = Logout;
 window.user = User;
 ReactDOM.render(
   <Provider store={store}>

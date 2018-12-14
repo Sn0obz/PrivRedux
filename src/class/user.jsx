@@ -5,38 +5,36 @@ class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: props.username,
-      firstname: "",
-      lastname: "",
-      servers: [],
-      password: props.password,
-      auth: false
+      authenticated: false,
+      user: { username: "", firstname: "", lastname: "", servers: [] }
     };
   }
-  getAgServer = () => {
-    return null;
-  };
-  getUserName = () => {
-    return this.state.username;
-  };
-  logmein = () => {
-    if (this.state.password === "") {
-      return "Give Password du Fisch";
-    } else {
-      return "logged in ";
-    }
-  };
-  isloggedIn;
+
   render() {
-    return <h1>{this.logmein()}</h1>;
+    const yuser = this.props;
+    console.log("THISUSER");
+    console.log(this.props);
+    if (this.props.username === "") {
+      console.log("EMPTY");
+      console.log(this.state);
+      return <h1>empty</h1>;
+    } else {
+      console.log("RENDER");
+      console.log(this.state);
+      return <h1>{this.props.username}</h1>;
+    }
   }
 }
-function mapStateToProps(state) {
-  const { myAuth } = false;
-  return {
-    myAuth
-  };
-}
+const mapStateToProps = state => {
+  if (state.user != null) {
+    const yuser = state.user.user;
+    console.log("myuser");
+    console.log(yuser);
+    return yuser;
+  } else {
+    return state;
+  }
+};
 const connectedUser = connect(mapStateToProps)(User);
 //export default User;
 export { connectedUser as User };

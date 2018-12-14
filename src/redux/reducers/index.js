@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { logmein } from "./user.reducers";
-const rootReducer = combineReducers({ logmein });
+import { user } from "./user.reducers";
+const rootReducer = combineReducers({ user });
 
 export default rootReducer;
