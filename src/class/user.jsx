@@ -1,28 +1,103 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Login, Logout } from "../redux/actions";
 
 class User extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
   }
-
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("Handles");
+    console.log(this.state);
+    const { dispatch } = this.props;
+    dispatch(Login(this.state.username, this.state.password));
+  };
+  handleChange = event => {
+    console.log(event.target);
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+    console.log(this.state);
+  };
+  handleLogout = event => {
+    const { dispatch } = this.props;
+    this.setState({ username: "", password: "" });
+    dispatch(Logout());
+  };
   render() {
-    console.log("THISUSER");
-    console.log(this.props);
-    if (this.props.username === "") {
-      console.log("EMPTY");
-      console.log(this.state);
-      return <h1>empty</h1>;
+    const { username, password } = this.state;
+    console.log(this.state);
+    //console.log("THISUSER");
+    //console.log(this.props);
+    if (this.props.user === null) {
+      //console.log("EMPTY");
+      //console.log(this.state);
+      return (
+        <form>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              className="form-control"
+              name="username"
+              id="username"
+              placeholder="Enter Username"
+              value={username}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-check">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={this.handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      );
     } else {
-      console.log("RENDER");
-      console.log(this.state);
-      return <h1>{this.props.username}</h1>;
+      //console.log("RENDER");
+      //console.log(this.state);
+      return (
+        <div>
+          <p>
+            Signed in as <a href="/profile">{this.props.user.username}</a>
+          </p>
+          <form>
+            <button
+              type="logout"
+              className="btn btn-primary"
+              onClick={this.handleLogout}
+            >
+              Logout
+            </button>
+          </form>
+        </div>
+      );
     }
   }
 }
 const mapStateToProps = state => {
   if (state.user != null) {
-    const yuser = state.user.user;
+    const yuser = state.user;
     console.log("myuser");
     console.log(yuser);
     return yuser;
