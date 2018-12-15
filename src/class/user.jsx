@@ -4,14 +4,9 @@ import { connect } from "react-redux";
 class User extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      authenticated: false,
-      user: { username: "", firstname: "", lastname: "", servers: [] }
-    };
   }
 
   render() {
-    const yuser = this.props;
     console.log("THISUSER");
     console.log(this.props);
     if (this.props.username === "") {
