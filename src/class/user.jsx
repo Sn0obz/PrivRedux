@@ -4,6 +4,7 @@ import { Login, Logout } from "../redux/actions";
 
 class User extends Component {
   constructor(props) {
+    console.log(props);
     super(props);
     this.state = {
       username: "",
@@ -12,16 +13,12 @@ class User extends Component {
   }
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Handles");
-    console.log(this.state);
     const { dispatch } = this.props;
     dispatch(Login(this.state.username, this.state.password));
   };
   handleChange = event => {
-    console.log(event.target);
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
   handleLogout = event => {
     const { dispatch } = this.props;
@@ -98,8 +95,6 @@ class User extends Component {
 const mapStateToProps = state => {
   if (state.user != null) {
     const yuser = state.user;
-    console.log("myuser");
-    console.log(yuser);
     return yuser;
   } else {
     return state;

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Sidebar from "./styling/Sidebar";
-import { User } from "./class/index";
+import { Sidebar } from "./styling/Sidebar";
 
 class App extends Component {
   handleSubmit = event => {

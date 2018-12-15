@@ -1,8 +1,10 @@
 import { userConstants } from "../constants";
-const initialState = {
-  authenticaed: false,
-  user: { username: "", name: "", firstname: "", myServers: [] }
-};
+const initialState = user.authenticated
+  ? {
+      authenticated: false,
+      user: { username: "", name: "", firstname: "", myServers: [] }
+    }
+  : {};
 
 export function user(state = initialState, action) {
   switch (action.type) {
