@@ -4,8 +4,9 @@ import { Login, Logout } from "../redux/actions";
 
 class User extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
+    console.log("MyConstructor")
+    console.log(this.props)
     this.state = {
       username: "",
       password: ""
@@ -23,16 +24,12 @@ class User extends Component {
   handleLogout = event => {
     const { dispatch } = this.props;
     this.setState({ username: "", password: "" });
+    console.log("LOG ME OUT")
     dispatch(Logout());
   };
   render() {
     const { username, password } = this.state;
-    console.log(this.state);
-    //console.log("THISUSER");
-    //console.log(this.props);
     if (this.props.user === null) {
-      //console.log("EMPTY");
-      //console.log(this.state);
       return (
         <form>
           <div className="form-group">
@@ -71,9 +68,10 @@ class User extends Component {
         </form>
       );
     } else {
-      //console.log("RENDER");
-      //console.log(this.state);
+      console.log("RENDER");
+      console.log(this.state);
       return (
+
         <div>
           <p>
             Signed in as <a href="/profile">{this.props.user.username}</a>
@@ -92,7 +90,7 @@ class User extends Component {
     }
   }
 }
-const mapStateToProps = state => {
+function mapStateToProps(state) {
   if (state.user != null) {
     const yuser = state.user;
     return yuser;

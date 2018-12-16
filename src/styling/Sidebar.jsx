@@ -5,15 +5,10 @@ import { connect } from "react-redux";
 class SideBar extends Component {
   constructor(props) {
     super(props);
-    console.log("PROPS");
-    console.log(props);
-    this.state = {
-      loggedIn: false
-    };
-  }
+}
+
   render() {
-    console.log(this.state);
-    return (
+  return (
       <React.Fragment>
         <nav className="col-md-2 d-none d-md-block bg-light sidebar">
           <div className="sidebar-sticky">
@@ -29,14 +24,6 @@ class SideBar extends Component {
   }
 }
 function mapStateToProps(state) {
-  if (state.user != null) {
-    console.log(state);
-    console.log("I Return");
-    const myProps = {
-      loggedIn: true
-    };
-    return myProps;
-  }
   return state;
 }
 const connectedSidebar = connect(mapStateToProps)(SideBar);
